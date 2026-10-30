@@ -1,0 +1,30 @@
+# --- never commit firmware or derived material -------------------------
+# official firmware packages (any model)
+*.bin
+*.exe
+*.zip
+!requirements.txt
+
+# decrypted images, extracted modules, ELF slices
+_dec/
+_dl/
+_fwd/
+build/
+
+# recovered XOR tables / key material
+key.json
+*sig*.json
+
+# generated candidates
+EG*.BIN
+EG*.json
+
+# --- tooling -----------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

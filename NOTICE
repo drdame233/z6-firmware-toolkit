@@ -1,0 +1,45 @@
+# Third-party notices and attribution
+
+This project does not vendor any third-party code. The methods below are cited
+because this work builds on them, or because they are the closest public
+prior art.
+
+## Method origins
+
+### nikon-fw-key-tool — GPL-3.0
+<https://github.com/WonderLantern/nikon-fw-key-tool>
+
+The container layout (32-byte plaintext header, 32-space label, module directory,
+two-level CRC-16/CCITT), the three-table XOR keystream with its 2^24 period, and
+the keyed header digest `SHA1(decrypted_body || K8)` were established by this
+project. Key recovery from constant-fill padding sectors is its method.
+
+This repository does **not** include that code, its key files, or any firmware.
+Obtain it separately if you need key recovery.
+
+### Wonder Lantern Z30 — MIT
+<https://github.com/RealCaCl2/z30-firmware-extensions>
+
+The Z30 is EXPEED 6 like the Z6. Its patch model — standalone EG module, equal
+length byte edits with expected-byte verification, code appended before the
+trailing CRC, CRC recomputed and self-checked, and reuse of the stock 16:9 slot
+for custom aspect ratios — is the reference this toolkit follows.
+
+No Z30 code or artifacts are included here.
+
+### nikon-firmware-tools
+<https://github.com/simeonpilgrim/nikon-firmware-tools>
+
+Earlier community tooling for Nikon firmware containers; consulted for framing.
+
+## Trademarks
+
+"Nikon", "Z 6", "Z 7", "EXPEED" are trademarks of Nikon Corporation. They are
+used descriptively to identify the hardware this tool interoperates with. This
+project is not affiliated with or endorsed by Nikon Corporation.
+
+## Content policy
+
+No Nikon firmware, decrypted image, extracted module, or recovered key material
+is stored in this repository, and none should be added. `.gitignore` blocks the
+usual paths and file types.
