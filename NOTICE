@@ -1,45 +1,121 @@
 # Third-party notices and attribution
 
-This project does not vendor any third-party code. The methods below are cited
-because this work builds on them, or because they are the closest public
-prior art.
+This project does not vendor any third-party code. The projects below are cited
+because this work builds on their published methods and records, or because they
+are the closest public prior art.
 
-## Method origins
+**No code from any of them is included here.** Each remains under its own
+license; nothing in this repository relicenses them.
 
-### nikon-fw-key-tool — GPL-3.0
+---
+
+## WonderLantern org — the direct predecessor
+
+The `WonderLantern` organisation publishes the work this repository follows.
+Their Z6 project is the single most important reference: it targets the **same
+firmware version** this toolkit analyses.
+
+### WonderLantern/WonderLantern-z6 — Wonder Lantern Community License
+<https://github.com/WonderLantern/WonderLantern-z6>
+(previously reachable as `github.com/vic2349/Wonder-Lantern`)
+
+"Nikon Z6 长曝光与肩屏倒计时 v1". Applies to the Nikon Z6 only, based on
+firmware C3.80 — the same package this repository works on. It implements a
+**custom shutter sound** and moves the top-plate countdown into a
+card-loaded `SLOWCORE.BIN`.
+
+This is the basis for this repository's assessment that goal 3 (custom shutter
+sound on Z6 C3.80) is achievable: the stock firmware has no user-facing audio
+playback path, but a card-loaded binary injected by a patch can supply one.
+
+Their own notes record that the sound menu's touch handling is not fixed yet and
+that the shutter countdown is unavailable under the mechanical shutter.
+
+### WonderLantern/wonder-lantern-z30 — MIT (most files) + Wonder Lantern Community License (14 files)
+<https://github.com/WonderLantern/wonder-lantern-z30>
+(previously reachable as `github.com/RealCaCl2/z30-firmware-extensions`)
+
+"Source-based Nikon Z30 C 1.20 firmware extensions and patch tools". The Z30 is
+EXPEED 6 like the Z6.
+
+This repository's **patch model** follows theirs:
+
+- deliver a standalone EG module rather than a repackaged container, so the
+  keyed whole-package digest is never needed;
+- equal-length byte edits that must match expected stock bytes;
+- code appended before the trailing CRC, four-byte aligned;
+- module CRC recomputed and self-checked to residue 0;
+- reuse of the stock 16:9 slot for custom aspect ratios.
+
+The following files in their repository are under the separate **Wonder Lantern
+Community License** (free to use, modify and redistribute; resale and paywalls
+prohibited; publicly distributed modified versions must ship source under the
+same license):
+
+```
+features/aspect_border.py        features/aspect_border_lease.py
+features/aspect_frame.py         features/aspect_mask.py
+features/aspect_mask_trace.py    features/aspect_trace.py
+features/aspect_ui.py            features/bitrate_ui.py
+features/shutter_sound.py        features/sound_audio.py
+features/sound_layout.py         features/sound_settings.py
+features/sound_ui.py             features/ui_text.py
+```
+
+### WonderLantern/nikon-fw-key-tool — GPL-3.0
 <https://github.com/WonderLantern/nikon-fw-key-tool>
 
-The container layout (32-byte plaintext header, 32-space label, module directory,
-two-level CRC-16/CCITT), the three-table XOR keystream with its 2^24 period, and
-the keyed header digest `SHA1(decrypted_body || K8)` were established by this
-project. Key recovery from constant-fill padding sectors is its method.
+"Recover Nikon's legacy firmware XOR tables, decrypt images, and repack edited
+Z 8 / Z 9 images with valid checksums and header digests."
 
-This repository does **not** include that code, its key files, or any firmware.
-Obtain it separately if you need key recovery.
+Established the facts this repository's container code is written against: the
+layout (32-byte plaintext header, 32-space label, module directory, two-level
+CRC-16/CCITT), the three-table XOR keystream with its 2^24 period, the keyed
+header digest `SHA1(decrypted_body || K8)`, and key recovery from constant-fill
+padding sectors.
 
-### Wonder Lantern Z30 — MIT
-<https://github.com/RealCaCl2/z30-firmware-extensions>
+**Not included here.** Recover the tables yourself with that tool; this
+repository ships no key material.
 
-The Z30 is EXPEED 6 like the Z6. Its patch model — standalone EG module, equal
-length byte edits with expected-byte verification, code appended before the
-trailing CRC, CRC recomputed and self-checked, and reuse of the stock 16:9 slot
-for custom aspect ratios — is the reference this toolkit follows.
+---
 
-No Z30 code or artifacts are included here.
+## Other references
 
-### nikon-firmware-tools
+### tylermcm/WonderLanternZ7 — see repository
+<https://github.com/tylermcm/WonderLanternZ7>
+
+A Z7 lab record. Its flash assessment documents a failed candidate ("Latest
+result: failed", continuous live-view sound and capture-audio busy) and states
+that emergency recovery is unverified. That record is the main source for this
+repository's risk section: it is the reason the current aspect candidates are
+marked not-for-flashing.
+
+### simeonpilgrim/nikon-firmware-tools — MIT
 <https://github.com/simeonpilgrim/nikon-firmware-tools>
 
-Earlier community tooling for Nikon firmware containers; consulted for framing.
+Earlier community tooling for Nikon firmware containers, consulted to frame the
+format work. No code included.
 
-## Trademarks
+---
 
-"Nikon", "Z 6", "Z 7", "EXPEED" are trademarks of Nikon Corporation. They are
-used descriptively to identify the hardware this tool interoperates with. This
-project is not affiliated with or endorsed by Nikon Corporation.
+## Licensing of this repository
 
-## Content policy
+| Scope | License |
+|---|---|
+| Documentation (`README.md`, `NOTICE`, `docs/**`) | CC BY-SA 4.0 — see `LICENSE-docs` |
+| Code (`z6fw/**`, `scripts/**`) | MIT — see `LICENSE` |
+
+Consistent with the upstream Wonder Lantern projects, this repository is
+**distributed free of charge**: no fee, no paywall.
+
+---
+
+## Trademarks and content policy
+
+"Nikon", "Z 6", "Z 7", "Z 30", "EXPEED" are trademarks of Nikon Corporation.
+They are used descriptively to identify the hardware this tool interoperates
+with. This project is not affiliated with or endorsed by Nikon Corporation.
 
 No Nikon firmware, decrypted image, extracted module, or recovered key material
 is stored in this repository, and none should be added. `.gitignore` blocks the
-usual paths and file types.
+usual paths and file types. Firmware and resources must be supplied by the user.

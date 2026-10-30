@@ -89,15 +89,33 @@ python -m z6fw aspect --preset aspect-21x9
 
 ---
 
-## 许可与来源
+## 致谢与来源 / Credits
 
-本仓库代码以 MIT 发布（见 `LICENSE`）。它**不是**尼康的产物，与尼康无关联。
+这项工作建立在前人的公开成果之上。**特别致谢 `WonderLantern` 组织与其维护者**——
+他们不仅公开了同为 EXPEED 6 的补丁方法，而且他们的 Z6 项目正是针对**同一份 C3.80 固件**
+做的自定义快门声与长曝光工作。没有这些公开记录，本仓库无从开始。
 
-方法与先例来自两个公开项目，本仓库不复制其代码，仅引用做法：
+| 项目 | 与本仓库的关系 | 其许可 |
+|---|---|---|
+| **[WonderLantern/WonderLantern-z6](https://github.com/WonderLantern/WonderLantern-z6)**<br>（原 `vic2349/Wonder-Lantern`） | **最直接的前辈项目。** 适用机型 Nikon Z6、基于 C3.80；实现自定义快门声，并把肩屏倒计时主体迁入卡载 `SLOWCORE.BIN`。本仓库目标 3 的可行性判断直接建立在此之上。 | Wonder Lantern Community License |
+| **[WonderLantern/wonder-lantern-z30](https://github.com/WonderLantern/wonder-lantern-z30)**<br>（原 `RealCaCl2/z30-firmware-extensions`） | 同为 EXPEED 6。独立 EG 模块投递、等长字节替换 + expected 校验 + 尾部追加 + CRC 重算、复用原厂 16:9 槽位做自定义画幅——本仓库的补丁模型照此设计。 | MIT + Wonder Lantern Community License（14 个声音/画幅文件） |
+| **[WonderLantern/nikon-fw-key-tool](https://github.com/WonderLantern/nikon-fw-key-tool)** | 容器布局、三表 XOR 与 2²⁴ 周期、`SHA1(body‖K8)` 头部摘要、由 padding 反推密钥的方法。本仓库不含其代码，密钥需自行用该工具恢复。 | GPL-3.0 |
+| **[tylermcm/WonderLanternZ7](https://github.com/tylermcm/WonderLanternZ7)** | Z7 的实机记录，其中"最新结果：失败"与"紧急恢复未验证"是本仓库风险章节的主要依据。 | 见其仓库 |
+| **[simeonpilgrim/nikon-firmware-tools](https://github.com/simeonpilgrim/nikon-firmware-tools)** | 更早的尼康固件容器社区工具，用于对照理解格式。 | MIT |
 
-- [WonderLantern/nikon-fw-key-tool](https://github.com/WonderLantern/nikon-fw-key-tool) — 密钥恢复与容器解密（GPL-3.0）
-- [Wonder Lantern Z30](https://github.com/RealCaCl2/z30-firmware-extensions) — 同为 EXPEED 6 的补丁先例（MIT）
+**本仓库不包含上述任何项目的代码。** 上表的许可是各项目的，不是本仓库的。
 
-详见 `NOTICE`。
+### 本仓库的许可划分
+
+| 范围 | 许可 |
+|---|---|
+| **文档**（`docs/`、`README.md`、`NOTICE`） | **CC BY-SA 4.0** — 见 `LICENSE-docs` |
+| **代码**（`z6fw/`、`scripts/`） | MIT — 见 `LICENSE` |
+
+采用 CC BY-SA 4.0 是希望这些分析与文档能被自由转载、翻译和继续修订，
+但署名必须保留、衍生作品须以相同方式共享。
+
+并且本仓库与其致敬的上游项目一致：**免费分发，不收费、不设付费墙。**
 
 用途限定：互操作性研究与个人学习。请遵守所在地法律，不要分发固件内容或派生模块。
+

@@ -1,0 +1,64 @@
+Documentation license
+=====================
+
+Scope
+-----
+
+This license covers the **documentation in this repository only**:
+
+    README.md
+    NOTICE
+    LICENSE-docs
+    docs/**
+
+Source code under `z6fw/` and `scripts/` is licensed separately under the MIT
+License, see `LICENSE`. Nothing here relicenses any third-party project: the
+projects credited in `NOTICE` remain under their own terms.
+
+License
+-------
+
+The documentation is licensed under the
+
+    Creative Commons Attribution-ShareAlike 4.0 International
+    (CC BY-SA 4.0)
+
+You are free to:
+
+  - **Share** — copy and redistribute the material in any medium or format
+  - **Adapt** — remix, transform, and build upon the material for any purpose,
+    even commercially
+
+Under the following terms:
+
+  - **Attribution** — You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. You may do so in any reasonable
+    manner, but not in any way that suggests the licensor endorses you or your
+    use.
+  - **ShareAlike** — If you remix, transform, or build upon the material, you
+    must distribute your contributions under the same license as the original.
+  - **No additional restrictions** — You may not apply legal terms or
+    technological measures that legally restrict others from doing anything the
+    license permits.
+
+Full legal code: <https://creativecommons.org/licenses/by-sa/4.0/legalcode>
+
+Human-readable summary: <https://creativecommons.org/licenses/by-sa/4.0/>
+
+Suggested attribution
+---------------------
+
+    Based on "Z6 Firmware Toolkit" documentation,
+    https://github.com/drdame233/z6-firmware-toolkit,
+    licensed CC BY-SA 4.0.
+
+Credit must also be preserved for the prior work this documentation builds on;
+see `NOTICE` for the full list. In particular the firmware-analysis methods and
+the Z6 C3.80 predecessor work come from the WonderLantern projects, which are
+**not** covered by CC BY-SA.
+
+No warranty
+-----------
+
+The documentation is provided "as is", without warranty of any kind. Firmware
+modification can render hardware inoperable; see the risk section of `README.md`.
